@@ -4,27 +4,32 @@
   <meta charset="UTF-8">
   <title><%= paper.title %></title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="container py-4">
-  <h1 class="mb-3"><%= paper.title %></h1>
+  <h1 class="mb-3 fw-bold"><%= paper.title %></h1>
   <p class="text-muted">著者: <%= paper.authors.join(', ') %> (<%= paper.year %>)</p>
 
-  <h2>PICO</h2>
-  <ul>
-    <li>P: <%= paper.pico.population %></li>
-    <li>I: <%= paper.pico.intervention %></li>
-    <li>C: <%= paper.pico.comparison %></li>
-    <li>O: <%= paper.pico.outcome %></li>
+  <h2 class="mt-4">PICO</h2>
+  <ul class="list-group list-group-flush mb-3">
+    <li class="list-group-item">P: <%= paper.pico.population %></li>
+    <li class="list-group-item">I: <%= paper.pico.intervention %></li>
+    <li class="list-group-item">C: <%= paper.pico.comparison %></li>
+    <li class="list-group-item">O: <%= paper.pico.outcome %></li>
   </ul>
 
-  <p><strong>組み入れ基準:</strong> <%= paper.inclusion %></p>
-  <p><strong>除外基準:</strong> <%= paper.exclusion %></p>
+  <div class="mb-3">
+    <strong>組み入れ基準:</strong> <%= paper.inclusion %>
+  </div>
+  <div class="mb-4">
+    <strong>除外基準:</strong> <%= paper.exclusion %>
+  </div>
 
   <h2>結果</h2>
   <p><%= paper.results %></p>
-  <canvas id="resultChart"></canvas>
+  <canvas id="resultChart" class="mb-4"></canvas>
 
   <h2>考察</h2>
   <p><%= paper.discussion %></p>
@@ -32,7 +37,11 @@
   <h2>批判的吟味</h2>
   <p><%= paper.critique %></p>
 
-  <p>タグ: <%= paper.tags.join(', ') %></p>
+  <div class="mt-4">
+    <% paper.tags.forEach(tag => { %>
+      <span class="badge bg-secondary me-1"><%= tag %></span>
+    <% }) %>
+  </div>
 
   <p><a href="/" class="btn btn-secondary mt-3">一覧へ戻る</a></p>
 
